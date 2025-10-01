@@ -1,7 +1,6 @@
 const  { ButtonStyle, Client, Collection, IntentsBitField, SelectMenuType } = require('discord.js')
 const config = require('./config.json')
-const db = require('../database/database.js')
-const cluster = require('cluster')
+// const db = require('../database/database.js')
 
 const client = new Client({ intents: new IntentsBitField(3176799) })
 
@@ -11,12 +10,12 @@ client.events = new Collection()
 client.modals = new Collection()
 client.selects = new Collection()
 
-client.db = db
+// client.db = db
 client.config = config
 
 require('./handlers/commands.js')(client)
-require('./handlers/interaction.js')(client)
-require('./handlers/slashcommand.js')(client)
+require('./handlers/interactions.js')(client)
+require('./handlers/slashCommands.js')(client)
 require('./handlers/events.js')(client)
 
 client.login(config.token)

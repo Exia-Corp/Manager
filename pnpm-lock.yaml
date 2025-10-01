@@ -17,6 +17,9 @@ importers:
       sqlite3:
         specifier: ^5.1.7
         version: 5.1.7
+      ws:
+        specifier: ^8.18.3
+        version: 8.18.3
 
 packages:
 
