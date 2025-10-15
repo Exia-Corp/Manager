@@ -5,11 +5,18 @@
  * @param {Object} options
  */
 
+const { ApplicationCommandOptionType } = require("discord.js");
+
 function addOptions(builder, options) {
     options.forEach(option => {
-        switch (option.type.toLowerCase()) {
-            case 'string':
-                builder.addStringOption(opt =>
+        if (
+            option.type === ApplicationCommandOptionType.Subcommand ||
+            option.type === ApplicationCommandOptionType.SubcommandGroup
+        ) return; 
+
+        switch (option.type) {
+            case ApplicationCommandOptionType.String:
+                builder.addStringOptions(opt =>
                     opt.setName(option.name)
                         .setDescription(option.description ?? '')
                         .setRequired(option.required ?? false)
@@ -20,57 +27,57 @@ function addOptions(builder, options) {
                         })) ?? [])
                 );
                 break;
-            case 'integer':
-                builder.addIntegerOption(opt =>
+            case ApplicationCommandOptionType.Integer:
+                builder.addIntegerOptions(opt =>
                     opt.setName(option.name)
                         .setDescription(option.description ?? '')
                         .setRequired(option.required ?? false)
                 );
                 break;
-            case 'boolean':
-                builder.addBooleanOption(opt =>
+            case ApplicationCommandOptionType.Boolean:
+                builder.addBooleanOptions(opt =>
                     opt.setName(option.name)
                         .setDescription(option.description ?? '')
                         .setRequired(option.required ?? false)
                 );
                 break;
-            case 'user':
-                builder.addUserOption(opt =>
+            case ApplicationCommandOptionType.User:
+                builder.addUserOptions(opt =>
                     opt.setName(option.name)
                         .setDescription(option.description ?? '')
                         .setRequired(option.required ?? false)
                 );
                 break;
-            case 'channel':
-                builder.addChannelOption(opt =>
+            case ApplicationCommandOptionType.Channel:
+                builder.addChannelOptions(opt =>
                     opt.setName(option.name)
                         .setDescription(option.description ?? '')
                         .setRequired(option.required ?? false)
                 );
                 break;
-            case 'role':
-                builder.addRoleOption(opt =>
+            case ApplicationCommandOptionType.Role:
+                builder.addRoleOptions(opt =>
                     opt.setName(option.name)
                         .setDescription(option.description ?? '')
                         .setRequired(option.required ?? false)
                 );
                 break;
-            case 'mentionable':
-                builder.addMentionableOption(opt =>
+            case ApplicationCommandOptionType.Mentionable:
+                builder.addMentionableOptions(opt =>
                     opt.setName(option.name)
                         .setDescription(option.description ?? '')
                         .setRequired(option.required ?? false)
                 );
                 break;
-            case 'attachment':
-                builder.addAttachmentOption(opt =>
+            case ApplicationCommandOptionType.Attachment:
+                builder.addAttachmentOptions(opt =>
                     opt.setName(option.name)
                         .setDescription(option.description ?? '')
                         .setRequired(option.required ?? false)
                 );
                 break;
-            case 'number':
-                builder.addNumberOption(opt =>
+            case ApplicationCommandOptionType.Number:
+                builder.addNumberOptions(opt =>
                     opt.setName(option.name)
                         .setDescription(option.description ?? '')
                         .setRequired(option.required ?? false)
