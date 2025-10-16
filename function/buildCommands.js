@@ -1,6 +1,6 @@
 const { 
 	ApplicationCommandOptionType,
-	ChatInputCommandBuilder 
+	SlashCommandBuilder
 } = require('discord.js');
 const addOptions = require('./addOptions');
 
@@ -10,7 +10,7 @@ const addOptions = require('./addOptions');
  * @returns {Object} Command JSON ready to register
  */
 function buildCommand(command) {
-	const slashCommand = new ChatInputCommandBuilder()
+	const slashCommand = new SlashCommandBuilder()
 		.setName(command.name)
 		.setDescription(command.description)
 		.setNSFW(command.nsfw ?? false);
@@ -23,7 +23,7 @@ function buildCommand(command) {
 		command.options.forEach(option => {
 			switch (option.type) {
 				case ApplicationCommandOptionType.Subcommand:
-					slashCommand.addSubcommands(sub => {
+					slashCommand.addSubcommand(sub => {
 						sub.setName(option.name)
 							.setDescription(option.description ?? 'Aucune description.');
 						if (option.options?.length)
@@ -33,7 +33,7 @@ function buildCommand(command) {
 					break;
 
 				case ApplicationCommandOptionType.SubcommandGroup:
-					slashCommand.addSubcommandGroups(group => {
+					slashCommand.addSubcommandGroup(group => {
 						group.setName(option.name)
 							.setDescription(option.description ?? 'Aucune description.');
 						if (option.options?.length) {
