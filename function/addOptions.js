@@ -16,7 +16,7 @@ function addOptions(builder, options) {
 
         switch (option.type) {
             case ApplicationCommandOptionType.String:
-                builder.addStringOptions(opt =>
+                builder.addStringOption(opt =>
                     opt.setName(option.name)
                         .setDescription(option.description ?? '')
                         .setRequired(option.required ?? false)
@@ -28,56 +28,56 @@ function addOptions(builder, options) {
                 );
                 break;
             case ApplicationCommandOptionType.Integer:
-                builder.addIntegerOptions(opt =>
+                builder.addIntegerOption(opt =>
                     opt.setName(option.name)
                         .setDescription(option.description ?? '')
                         .setRequired(option.required ?? false)
                 );
                 break;
             case ApplicationCommandOptionType.Boolean:
-                builder.addBooleanOptions(opt =>
+                builder.addBooleanOption(opt =>
                     opt.setName(option.name)
                         .setDescription(option.description ?? '')
                         .setRequired(option.required ?? false)
                 );
                 break;
             case ApplicationCommandOptionType.User:
-                builder.addUserOptions(opt =>
+                builder.addUserOption(opt =>
                     opt.setName(option.name)
                         .setDescription(option.description ?? '')
                         .setRequired(option.required ?? false)
                 );
                 break;
             case ApplicationCommandOptionType.Channel:
-                builder.addChannelOptions(opt =>
+                builder.addChannelOption(opt =>
                     opt.setName(option.name)
                         .setDescription(option.description ?? '')
                         .setRequired(option.required ?? false)
                 );
                 break;
             case ApplicationCommandOptionType.Role:
-                builder.addRoleOptions(opt =>
+                builder.addRoleOption(opt =>
                     opt.setName(option.name)
                         .setDescription(option.description ?? '')
                         .setRequired(option.required ?? false)
                 );
                 break;
             case ApplicationCommandOptionType.Mentionable:
-                builder.addMentionableOptions(opt =>
+                builder.addMentionableOption(opt =>
                     opt.setName(option.name)
                         .setDescription(option.description ?? '')
                         .setRequired(option.required ?? false)
                 );
                 break;
             case ApplicationCommandOptionType.Attachment:
-                builder.addAttachmentOptions(opt =>
+                builder.addAttachmentOption(opt =>
                     opt.setName(option.name)
                         .setDescription(option.description ?? '')
                         .setRequired(option.required ?? false)
                 );
                 break;
             case ApplicationCommandOptionType.Number:
-                builder.addNumberOptions(opt =>
+                builder.addNumberOption(opt =>
                     opt.setName(option.name)
                         .setDescription(option.description ?? '')
                         .setRequired(option.required ?? false)

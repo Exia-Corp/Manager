@@ -38,7 +38,7 @@ function buildCommand(command) {
 							.setDescription(option.description ?? 'Aucune description.');
 						if (option.options?.length) {
 							option.options.forEach(subcommand => {
-								group.addSubcommands(sub => {
+								group.addSubcommand(sub => {
 									sub.setName(subcommand.name)
 										.setDescription(subcommand.description ?? 'Aucune description.');
 									if (subcommand.options?.length)
