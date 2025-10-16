@@ -3,8 +3,7 @@ const {
     TextInputStyle, 
     StringSelectMenuBuilder, 
     ModalBuilder, 
-    ActionRowBuilder, 
-    ApplicationCommandOptionType
+    ActionRowBuilder 
 } = require('discord.js')
 
 module.exports = {
@@ -16,7 +15,7 @@ module.exports = {
         {
             name: 'ajouter',
             description: 'Ajouter une note de mise à jour',
-            type: ApplicationCommandOptionType.Subcommand,
+            type: 'subcommand',
             options: []
         }
     ],
@@ -34,12 +33,11 @@ module.exports = {
                 .setRequired(true)
                 .setLabel('Titre de la mise à jour')
 
-            const version = new TextInputBuilder({
-                customId: 'changelogs_version',
-                label: 'Version',
-                required: true,
-                style: TextInputStyle.Short
-            })
+            const version = new TextInputBuilder()
+                .setCustomId('changelogs_version')
+                .setLabel('Version')
+                .setRequired(true)
+                .setStyle(TextInputStyle.Short)
 
             const type = new StringSelectMenuBuilder()
                 .setCustomId('changelogs_type')
@@ -63,15 +61,12 @@ module.exports = {
                 .setStyle(TextInputStyle.Paragraph)
                 .setLabel('Description de la mise à jour')
 
-            modal.addTextDisplayComponents(
+            modal.addComponents(
                 new ActionRowBuilder().addComponents(title),
                 new ActionRowBuilder().addComponents(version),
+                new ActionRowBuilder().addComponents(type),
+                new ActionRowBuilder().addComponents(level),
                 new ActionRowBuilder().addComponents(text)
-            )
-            
-            modal.ADD(
-                new ActionRowBuilder(level),
-                new ActionRowBuilder(type)
             )
 
             await interaction.showModal(modal)

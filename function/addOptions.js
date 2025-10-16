@@ -5,17 +5,10 @@
  * @param {Object} options
  */
 
-const { ApplicationCommandOptionType } = require("discord.js");
-
 function addOptions(builder, options) {
     options.forEach(option => {
-        if (
-            option.type === ApplicationCommandOptionType.Subcommand ||
-            option.type === ApplicationCommandOptionType.SubcommandGroup
-        ) return; 
-
-        switch (option.type) {
-            case ApplicationCommandOptionType.String:
+        switch (option.type.toLowerCase()) {
+            case 'string':
                 builder.addStringOption(opt =>
                     opt.setName(option.name)
                         .setDescription(option.description ?? '')
@@ -27,56 +20,56 @@ function addOptions(builder, options) {
                         })) ?? [])
                 );
                 break;
-            case ApplicationCommandOptionType.Integer:
+            case 'integer':
                 builder.addIntegerOption(opt =>
                     opt.setName(option.name)
                         .setDescription(option.description ?? '')
                         .setRequired(option.required ?? false)
                 );
                 break;
-            case ApplicationCommandOptionType.Boolean:
+            case 'boolean':
                 builder.addBooleanOption(opt =>
                     opt.setName(option.name)
                         .setDescription(option.description ?? '')
                         .setRequired(option.required ?? false)
                 );
                 break;
-            case ApplicationCommandOptionType.User:
+            case 'user':
                 builder.addUserOption(opt =>
                     opt.setName(option.name)
                         .setDescription(option.description ?? '')
                         .setRequired(option.required ?? false)
                 );
                 break;
-            case ApplicationCommandOptionType.Channel:
+            case 'channel':
                 builder.addChannelOption(opt =>
                     opt.setName(option.name)
                         .setDescription(option.description ?? '')
                         .setRequired(option.required ?? false)
                 );
                 break;
-            case ApplicationCommandOptionType.Role:
+            case 'role':
                 builder.addRoleOption(opt =>
                     opt.setName(option.name)
                         .setDescription(option.description ?? '')
                         .setRequired(option.required ?? false)
                 );
                 break;
-            case ApplicationCommandOptionType.Mentionable:
+            case 'mentionable':
                 builder.addMentionableOption(opt =>
                     opt.setName(option.name)
                         .setDescription(option.description ?? '')
                         .setRequired(option.required ?? false)
                 );
                 break;
-            case ApplicationCommandOptionType.Attachment:
+            case 'attachment':
                 builder.addAttachmentOption(opt =>
                     opt.setName(option.name)
                         .setDescription(option.description ?? '')
                         .setRequired(option.required ?? false)
                 );
                 break;
-            case ApplicationCommandOptionType.Number:
+            case 'number':
                 builder.addNumberOption(opt =>
                     opt.setName(option.name)
                         .setDescription(option.description ?? '')

@@ -1,30 +1,26 @@
 const axios = require('axios')
-const { EmbedBuilder, MessageFlags, ApplicationCommandOptionType, InteractionContextType } = require('discord.js')
+const { EmbedBuilder, MessageFlags } = require('discord.js')
 
 module.exports = {
     name: 'admin',
     description: 'Commande de bot',
-    context: [
-        InteractionContextType.BotDM,
-        InteractionContextType.Guild,
-        InteractionContextType.PrivateChannel
-    ],
+    dm: false,
     permissions: 'Aucune',
     options: [
         {
             name: 'show',
             description: 'Affiche les bots',
-            type: ApplicationCommandOptionType.SubcommandGroup,
+            type: 'subcommandgroup',
             options: [
                 {
                     name: 'info',
                     description: 'Affiche les info d\'un bot à partir de sont id',
-                    type: ApplicationCommandOptionType.Subcommand,
+                    type: 'subcommand',
                     options: [
                         {
                             name: "id",
                             description: 'Id du bot à afficher',
-                            type: ApplicationCommandOptionType.String,
+                            type: 'string',
                             required: true
                         }
                     ]
@@ -32,7 +28,7 @@ module.exports = {
                 {
                     name: 'list',
                     description: 'Affiche la liste des bots',
-                    type: ApplicationCommandOptionType.Subcommand,
+                    type: "subcommand",
                     options: []
                 }
             ]
@@ -40,18 +36,18 @@ module.exports = {
         {
             name: 'create',
             description: 'Permet au admins de créer un bot',
-            type: ApplicationCommandOptionType.Subcommand,
+            type: 'subcommand',
             options: []
         },
         {
             name: 'manage',
             description: 'Gére un bot perso',
-            type: ApplicationCommandOptionType.Subcommand,
+            type: 'subcommand',
             options: [
                 {
                     name: 'id',
                     description: 'Id du bot à gérer',
-                    type: ApplicationCommandOptionType.User,
+                    type: "user",
                     required: true
                 }
             ]
