@@ -1,5 +1,4 @@
 const { Events, InteractionType, MessageFlags } = require('discord.js');
-const { cp } = require('fs');
 
 module.exports = {
     name: Events.InteractionCreate,
